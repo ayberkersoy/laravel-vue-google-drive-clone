@@ -2,6 +2,8 @@
 
 import {Link} from "@inertiajs/vue3";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import CreateNewDropdown from "@/Components/CreateNewDropdown.vue";
+import NavLink from "@/Components/NavLink.vue";
 </script>
 
 <template>
@@ -14,7 +16,16 @@ import ApplicationLogo from "@/Components/ApplicationLogo.vue";
             </Link>
             LaraStorage
         </div>
-        <div class="px-3"></div>
+        <div class="px-3">
+            <CreateNewDropdown />
+
+            <div class="py-3">
+                <NavLink :href="route('my-files')">My Files</NavLink>
+                <NavLink href="/">Shared with me</NavLink>
+                <NavLink href="/">Shared by me</NavLink>
+                <NavLink href="/">Trash</NavLink>
+            </div>
+        </div>
     </nav>
 </template>
 
