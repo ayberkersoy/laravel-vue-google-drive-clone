@@ -42,6 +42,7 @@ Route::controller(\App\Http\Controllers\FileController::class)
             ->name('my-files');
 
         Route::post('create-folder', 'createFolder')->name('folder.create');
+        Route::post('/file', 'store')->name('file.store');
     });
 
 require __DIR__.'/auth.php';

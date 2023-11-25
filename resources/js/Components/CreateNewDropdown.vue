@@ -1,10 +1,10 @@
 <script setup>
 
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
-import {ChevronDownIcon} from "@heroicons/vue/20/solid/index.js";
 import CreateFolderModal from "@/Components/CreateFolderModal.vue";
 import {ref} from "vue";
+import FileUploadMenuItem from "@/Components/FileUploadMenuItem.vue";
+import FolderUploadMenuItem from "@/Components/FolderUploadMenuItem.vue";
 
 const createFolderModal = ref(false)
 
@@ -31,27 +31,23 @@ function showCreateFolderModal() {
             leave-to-class="transform scale-95 opacity-0"
         >
             <MenuItems
-                class="absolute left-0 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+                class="absolute left-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
                 <div class="px-1 py-1">
                     <MenuItem v-slot="{ active }">
-                        <a href="#" @click.prevent="showCreateFolderModal" class="text-gray-700 block px-4 py-2 text-sm">New Folder</a>
+                        <a href="#" @click.prevent="showCreateFolderModal"
+                           class="text-gray-700 block px-4 py-2 text-sm">
+                            New Folder
+                        </a>
                     </MenuItem>
                 </div>
                 <div class="px-1 py-1">
-                    <MenuItem v-slot="{ active }">
-                        <a class="text-gray-700 block px-4 py-2 text-sm">Upload Files</a>
-                    </MenuItem>
-                </div>
-                <div class="px-1 py-1">
-                    <MenuItem v-slot="{ active }">
-                        <a class="text-gray-700 block px-4 py-2 text-sm">Upload Folder</a>
-                    </MenuItem>
+                    <FileUploadMenuItem />
+                    <FolderUploadMenuItem />
                 </div>
             </MenuItems>
         </transition>
     </Menu>
-
     <CreateFolderModal v-model="createFolderModal" />
 </template>
 

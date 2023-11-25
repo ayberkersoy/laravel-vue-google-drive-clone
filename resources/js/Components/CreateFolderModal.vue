@@ -4,7 +4,7 @@ import Modal from "@/Components/Modal.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
-import {useForm} from "@inertiajs/vue3";
+import {useForm, usePage} from "@inertiajs/vue3";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import {nextTick, ref} from "vue";
@@ -12,9 +12,11 @@ import {nextTick, ref} from "vue";
 const { modelValue } = defineProps({
     modelValue: Boolean
 })
+const page = usePage()
 
 const form = useForm({
-    name: ''
+    name: '',
+    parent_id: null
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -22,6 +24,7 @@ const emit = defineEmits(['update:modelValue'])
 const folderNameInput = ref(null)
 
 function createFolder() {
+    form.parent_id = page.props.folder.id
     form.post(route('folder.create'), {
         preserveScroll: true,
         onSuccess: () => {
